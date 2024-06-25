@@ -52,32 +52,3 @@ public class VehicleInfoService extends ServiceImpl<VehicleInfoMapper, VehicleIn
 
 }
 
-
-/*@Override
-    @Transactional
-    public void insertVehicleInfo() {
-        // 生成随机的字符串部分
-        String randomPart = generateRandomString(8);
-
-        // 创建实体对象并设置属性
-        VehicleInfo vehicleInfo = new VehicleInfo();
-        vehicleInfo.setVid(System.currentTimeMillis() + randomPart);  // 使用时间戳和随机字符串拼接作为vid
-        vehicleInfo.setVin(1);  // 设置车架编号
-        vehicleInfo.setBatteryType("三元电池");
-        vehicleInfo.setTotalMileage(100.00);  // 设置总里程
-        vehicleInfo.setBatteryHealth(100);  // 设置电池健康状态
-
-        // 插入到数据库
-        vehicleInfoMapper.insert(vehicleInfo);
-    }
-
-    private String generateRandomString(int length) {
-        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        StringBuilder sb = new StringBuilder(length);
-        for (int i = 0; i < length; i++) {
-            int index = (int) (Math.random() * characters.length());
-            sb.append(characters.charAt(index));
-        }
-        return sb.toString();
-    }
-}*/
