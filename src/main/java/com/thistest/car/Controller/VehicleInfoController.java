@@ -29,6 +29,15 @@ public class VehicleInfoController {
     public String updateVehicleInfo(@RequestBody VehicleInfo vehicleInfo) {
         vehicleInfoService.updateVehicleInfo(vehicleInfo);
         return "更新数据成功";
+
+    }
+    @GetMapping("{id}")
+    public VehicleInfo  getVehicleInfo(@PathVariable int id) {
+       return  vehicleInfoService.getVehicleInfo(id);
+    }
+    @GetMapping("/vin{vin}")
+    public VehicleInfo  getVehicleInfoByVin(@PathVariable int vin) {
+        return  vehicleInfoService.getByVin(vin);
     }
 }
 

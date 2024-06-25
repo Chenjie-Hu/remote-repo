@@ -14,6 +14,11 @@ public class VehicleInfoService extends ServiceImpl<VehicleInfoMapper, VehicleIn
     private VehicleInfoMapper vehicleInfoMapper;
 
     @Transactional
+    public VehicleInfo getByVin(Integer vin) {
+        return vehicleInfoMapper.getByVin(vin);
+    }
+
+    @Transactional
     public void insertVehicleInfo(VehicleInfo vehicleInfo) {
         String randomPart = generateRandomString(8);
         vehicleInfo.setVid(Long.toString(System.currentTimeMillis()).substring(Long.toString(System.currentTimeMillis()).length()-8) + randomPart);  // 使用时间戳和随机字符串拼接作为vid
@@ -37,6 +42,11 @@ public class VehicleInfoService extends ServiceImpl<VehicleInfoMapper, VehicleIn
         vehicleInfo.setUpdateTime(new Date());  // 自动填充 updateTime
         vehicleInfo.setUpdateUser("admin");     // 自动填充 updateUser
         vehicleInfoMapper.updateById(vehicleInfo);
+    }
+    @Transactional
+    public VehicleInfo getVehicleInfo(Integer id) {
+        VehicleInfo vehicleInfo = vehicleInfoMapper.selectById(id);
+       return vehicleInfo;
     }
 
 
