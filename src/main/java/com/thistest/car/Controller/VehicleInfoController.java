@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.http.ResponseEntity;
 
 
@@ -43,8 +45,9 @@ public class VehicleInfoController {
     public VehicleInfo  getVehicleInfoByVin(@PathVariable int vin) {
         return  vehicleInfoService.getByVin(vin);
     }
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteVehicle(@PathVariable Long id) {
+    @DeleteMapping
+    public ResponseEntity<Void> deleteVehicle(@RequestBody Map<String, Object> requestBody) {
+        Long id = Long.valueOf(requestBody.get("id").toString());
         boolean deleted = vehicleInfoService.deleteVehicle(id);
         if (deleted) {
             return ResponseEntity.noContent().build();

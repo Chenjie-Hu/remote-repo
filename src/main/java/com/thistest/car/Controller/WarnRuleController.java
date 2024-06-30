@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/WarnRule")
 public class WarnRuleController {
@@ -36,8 +38,9 @@ public class WarnRuleController {
     public WarnRule  getWarnRule(@PathVariable Long id) {
         return  warnRuleService.getWarnRule(id);
     }
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteVehicle(@PathVariable Long id) {
+    @DeleteMapping
+    public ResponseEntity<Void> deleteVehicle(@RequestBody Map<String, Object> requestBody) {
+        Long id = Long.valueOf(requestBody.get("id").toString());
         boolean deleted = warnRuleService.deleteWarnRule(id);
         if (deleted) {
             return ResponseEntity.noContent().build();
