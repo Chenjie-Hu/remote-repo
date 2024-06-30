@@ -1,6 +1,7 @@
 package com.thistest.car.Service;
 import java.util.List;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.thistest.car.Entity.VehicleInfo;
 import com.thistest.car.Entity.WarnRule;
 import com.thistest.car.mapper.WarnRuleMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,22 @@ public class WarnRuleService extends ServiceImpl<WarnRuleMapper, WarnRule>{
 
         warnRuleMapper.insert(warnRule);
     }
+    @Transactional
+    public void updateWarnRule(WarnRule warnRule) {
+        warnRule.setUpdateTime(new Date());  // 自动填充 updateTime
+        warnRule.setUpdateUser("admin");     // 自动填充 updateUser
+        warnRuleMapper.updateById(warnRule);
+    }
+    @Transactional
+    public WarnRule getWarnRule(Long id) {
+        WarnRule warnRule = warnRuleMapper.selectById(id);
+        return warnRule;
+    }
+    @Transactional
+    public boolean deleteWarnRule(Long id) {
+        return removeById(id);
+    }
+
     public WarnRule getApplicableRule(double value, String batteryType, String type) {
         QueryWrapper<WarnRule> queryWrapper = new QueryWrapper<>();
         if (type.equals("mx_mi")) {

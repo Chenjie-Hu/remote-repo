@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.Date;
+import java.util.Collection;
 
 @Service
 public class VehicleInfoService extends ServiceImpl<VehicleInfoMapper, VehicleInfo> {
@@ -48,7 +49,10 @@ public class VehicleInfoService extends ServiceImpl<VehicleInfoMapper, VehicleIn
         VehicleInfo vehicleInfo = vehicleInfoMapper.selectById(id);
        return vehicleInfo;
     }
-
+    @Transactional
+    public boolean deleteVehicle(Long id) {
+        return removeById(id);
+    }
 
 }
 
